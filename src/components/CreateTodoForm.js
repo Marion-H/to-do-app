@@ -1,0 +1,27 @@
+import React, { useState } from 'react'
+import { Form, Button } from 'semantic-ui-react'
+
+function CreateTodoForm({ addTodo, item , index}) {
+    const [value, setValue] = useState('')
+
+    const handleOnChange = (e) => {
+        e.preventDefault()
+        addTodo(value, index)
+        setValue("")
+    }
+    return (
+        <Form onSubmit={handleOnChange}>
+            <Form.Field>
+                <input
+                    placeholder='Todo'
+                    value={value}
+                    onChange={(e) => setValue(e.target.value)} 
+                    required
+                />
+            </Form.Field>
+            <Button type='submit'>Ajoutez une {item}</Button>
+        </Form>
+    )
+}
+
+export default CreateTodoForm
