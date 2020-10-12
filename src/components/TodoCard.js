@@ -1,10 +1,12 @@
 import React from 'react'
 import { Button, Card } from 'semantic-ui-react'
-
-import CreateTodoForm from './CreateTodoForm'
+import { connect } from 'react-redux'
 import { Droppable, Draggable, DragDropContext } from 'react-beautiful-dnd'
 
-function TodoCard({ columns, tasks, addTodo, onDragEnd, deleteButton}) {
+import { ADD_TASK } from './store/action/actionTypes'
+import CreateTodoForm from './CreateTodoForm'
+
+function TodoCard({ columns, tasks, addTask, onDragEnd, deleteButton}) {
 
     const renderCardItem = (taskId) => {
         if (taskId === undefined) {
@@ -44,7 +46,7 @@ function TodoCard({ columns, tasks, addTodo, onDragEnd, deleteButton}) {
     }
 
     const renderInput = (index) => {
-        return <CreateTodoForm addTodo={addTodo} item='carte' index={index} />
+        return <CreateTodoForm add={addTask} item='carte' index={index} />
     }
 
     const renderCard = () => {
@@ -86,5 +88,19 @@ function TodoCard({ columns, tasks, addTodo, onDragEnd, deleteButton}) {
     )
 
 }
+const mapStateToProps = (state) => {
+    const tasks = state.tasks
+    const columns = state.columns
+    return {
+        tasks,
+        columns
+    }
+}
 
-export default TodoCard
+const mapDispatchToProps = (dispatch) => {
+ return {
+    addTask: (value) => dispatch({ type: ADD_TASK, payload: value })
+ }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoCard)

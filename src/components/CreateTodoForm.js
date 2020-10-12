@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { Form, Button } from 'semantic-ui-react'
 
-function CreateTodoForm({ addTodo, item , index}) {
+function CreateTodoForm({ add, item, index }) {
     const [value, setValue] = useState('')
 
     const handleOnChange = (e) => {
         e.preventDefault()
-        addTodo(value, index)
+        add(value)
         setValue("")
     }
     return (
@@ -15,7 +15,7 @@ function CreateTodoForm({ addTodo, item , index}) {
                 <input
                     placeholder='Todo'
                     value={value}
-                    onChange={(e) => setValue(e.target.value)} 
+                    onChange={(e) => setValue(e.target.value)}
                     required
                 />
             </Form.Field>
@@ -23,5 +23,7 @@ function CreateTodoForm({ addTodo, item , index}) {
         </Form>
     )
 }
+
+
 
 export default CreateTodoForm
