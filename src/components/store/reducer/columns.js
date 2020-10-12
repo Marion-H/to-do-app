@@ -8,7 +8,7 @@ const columns = (state = initialState, action) => {
         case ADD_COLUMN:
             return [...state, { title: payload, taskId: [] }]
         case ADD_TASKID:
-            return [ payload ]
+            return payload
         default:
             return state
     }

@@ -6,7 +6,7 @@ function CreateTodoForm({ add, item, index }) {
 
     const handleOnChange = (e) => {
         e.preventDefault()
-        add(value)
+        add(value, index)
         setValue("")
     }
     return (

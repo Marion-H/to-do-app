@@ -6,8 +6,7 @@ const tasks = (state = initialState, action) => {
     const {type, payload} = action
     switch(type){
         case ADD_TASK:
-            const id = `item ${tasks.length + 1}`
-            return [...state, {id, value: payload}]
+            return payload
         default:
             return state
     }

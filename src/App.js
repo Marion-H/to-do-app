@@ -11,11 +11,6 @@ import { ADD_COLUMN } from './components/store/action/actionTypes'
 
 function App({addColumn}) {
 
-  // const addTodo = (title, index) => {
-  //   const newColum = [...columns, { title, taskId: [] }]
-  //   setColums(newColum)
-  // }
-
   // const addItemTodo = (content, index) => {
   //   const id = `item ${tasks.length + 1}`
   //   const newTask = [...tasks, { id, content }]
@@ -98,9 +93,6 @@ function App({addColumn}) {
     return (
 
       <TodoCard
-        // tasks={tasks}
-        // columns={columns}
-        // addTodo={addItemTodo}
         // onDragEnd={onDragEnd}
         // deleteButton={deleteButton}
       />
