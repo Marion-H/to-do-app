@@ -1,3 +1,6 @@
 export const ADD_COLUMN = 'ADD-COLUMN'
 export const ADD_TASK = 'ADD_TASK'
 export const ADD_TASKID = 'ADD_TASKID'
+export const REORDER_TASKID = 'REORDER_TASKID'
+export const MOVE_TASKID = 'MOVE_TASKID'
+export const DELETE_TASK = 'DELETE_TASK'
