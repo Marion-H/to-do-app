@@ -1,19 +1,18 @@
 import { ADD_TASK, ADD_TASKID, DELETE_TASK, MOVE_TASKID, REORDER_TASKID, DELETE_TASKID } from './actionTypes'
 
+let itemId = 0
+
 export const addTaskId = (content, index) => {
     return (dispatch, getState) => {
         const state = getState()
         const { columns, tasks } = state
-        const id = `item ${tasks.length + 1}`
+        itemId = itemId + 1
+        const id = `item ${itemId}`
         const newTask = [...tasks, { id, content }]
         dispatch({ type: ADD_TASK, payload: newTask })
         const newColumnTaskId = columns.map((column, i) => {
             if (index === i) {
-                if (column.taskId === undefined) {
-                    return { ...column, taskId: [id] }
-                } else {
-                    return { ...column, taskId: [...column.taskId, id] }
-                }
+                return { ...column, taskId: [...column.taskId, id] }
             } else {
                 return column
             }
@@ -23,7 +22,6 @@ export const addTaskId = (content, index) => {
 }
 
 export const onDragEnd = (result) => {
-    console.log(result)
     return (dispatch, getState) => {
         const state = getState()
         const { columns } = state
@@ -37,11 +35,9 @@ export const onDragEnd = (result) => {
 
         if (sourceId === destinationId) {
             const items = reorder(columns, source.index, destination.index, destinationId)
-            console.log('reoder :', items)
             dispatch({ type: REORDER_TASKID, payload: items })
         } else {
             const items = move(columns, result)
-            console.log('move :', items)
             dispatch({ type: MOVE_TASKID, payload: items })
         }
     }
@@ -54,7 +50,6 @@ const reorder = (list, startIndex, endIndex, destinationId) => {
             const [removed] = result.splice(startIndex, 1);
             result.splice(endIndex, 0, removed);
             const newState = { ...column, taskId: result }
-            console.log('reorder state:', newState)
             return newState;
         } else {
 
@@ -98,16 +93,6 @@ export const deleteButton = (e, id) => {
             const newState = { ...res, taskId: newArrayTask }
             return newState
         })
-        // console.log(newArrayColumns)
-        // const newArrayColumns = columns.map(col => {
-        //     if (col.title === source.droppableId) {
-        //         const result = Array.from(col.taskId);
-        //         const newArray = result.filter(res => res !== draggableId)
-        //         const newState = { ...col, taskId: newArray }
-        //         return newState;
-        //     }
-        // }
-
         dispatch({ type: DELETE_TASKID, payload: newArrayColumns })
     }
 }
