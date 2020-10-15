@@ -53,17 +53,40 @@ function App() {
   }
 
   const reorder = (list, startIndex, endIndex, destinationId) => {
-    const newState = list.map(column => {
-      if (column.title === destinationId) {
-        const result = Array.from(column.taskId);
-        const [removed] = result.splice(startIndex, 1);
-        result.splice(endIndex, 0, removed);
-        const newState = { ...column, taskId: result }
-        return newState;
-      }
-      return column
+    const lengthTaskIds = list.map(column =>{
+      const {taskId} = column
+      const lengthTaskId =taskId.length
+      return lengthTaskId
     })
-    setColums(newState)
+    console.log('lengthTaskIds : ', lengthTaskIds)
+    const newState = list.map((column, i) => {
+      if ( i === 0) {
+        const {taskId, title} = column
+        if (title === destinationId) {
+          const result = Array.from(taskId);
+          const [removed] = result.splice(startIndex, 1);
+          console.log(startIndex)
+          result.splice(endIndex, 0, removed);
+          const newState = { ...column, taskId: result }
+          return newState;
+        }
+        return column
+      } else {
+        const start = lengthTaskIds[i] - lengthTaskIds[(i)]
+        console.log('start' ,start)
+        const {taskId, title} = column
+        if (title === destinationId) {
+          const result = Array.from(taskId);
+          const [removed] = result.splice(startIndex, 1);
+          console.log('startIndex',startIndex)
+          result.splice(endIndex, 0, removed);
+          const newState = { ...column, taskId: result }
+          return newState;
+        }
+        return column
+      }
+    })
+    return newState
   };
 
   const move = (list, result) => {
@@ -83,11 +106,12 @@ function App() {
       }
       return col
     })
-    setColums(newState)
+    return newState
   };
 
 
   const onDragEnd = (result) => {
+    console.log('result : ' , result)
     const { destination, source } = result
     if (!destination) {
       return
@@ -98,10 +122,13 @@ function App() {
 
     if (sourceId === destinationId) {
       const items = reorder(columns, source.index, destination.index, destinationId)
-      return items
+      console.log('reoder : ' , items)
+      return setColums(items)
+      
     } else {
       const items = move(columns, result)
-      return items
+      console.log('move : ' , items)
+      return setColums(items)
     }
   }
 
