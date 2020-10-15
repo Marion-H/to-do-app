@@ -8,9 +8,7 @@ import { ADD_COLUMN } from './components/store/action/actionTypes'
 
 
 
-
 function App({addColumn}) {
-
 
 
   const renderCard = () => {
