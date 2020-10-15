@@ -10,8 +10,8 @@ function TodoCard({ columns, tasks, addTodo, onDragEnd, deleteButton}) {
         if (taskId === undefined) {
             return <></>
         } else {
-            return taskId.map(id => {
-                return tasks.map((task, index) => {
+            return taskId.map((id, index) => {
+                return tasks.map((task) => {
                     if (task.id === id) {
                         return (
                             <Draggable
