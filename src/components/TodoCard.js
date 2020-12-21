@@ -32,10 +32,10 @@ function TodoCard({ columns, tasks, addTaskId, onDragEnd, deleteButton}) {
                                     >
                                         <Card >
                                             <Card.Content>
-                                                <Card.Header>
+                                                <Card.Header className={styles.cardItemDelete}>
                                                     {task.content}
                                                 </Card.Header>
-                                                <Button onClick={(e)=>deleteButton(e, id)}>Delete</Button>
+                                                <Button color="red" onClick={(e)=>deleteButton(e, id)}>Delete</Button>
                                             </Card.Content>
                                         </Card>
                                     </div>
@@ -49,7 +49,7 @@ function TodoCard({ columns, tasks, addTaskId, onDragEnd, deleteButton}) {
     }
 
     const renderInput = (index) => {
-        return <CreateTodoForm add={addTaskId} item='carte' index={index} />
+        return <CreateTodoForm add={addTaskId} item='carte' index={index} color="purple"/>
     }
 
     const renderCard = () => {

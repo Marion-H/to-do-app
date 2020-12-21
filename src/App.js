@@ -23,14 +23,16 @@ function App({addColumn}) {
   }
 
   return (
-    <Container fluid>
+    <Container fluid className={styles.container}>
+      <h1 className={styles.title}>To-do list</h1>
       <Card.Group className={styles.cardGroup}>
         {renderCard()}
         <Card>
           <Card.Content >
             <CreateTodoForm 
             add={addColumn} 
-            item="liste" />
+            item="liste"
+            color="blue" />
           </Card.Content>
         </Card>
       </Card.Group>

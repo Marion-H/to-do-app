@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Form, Button } from 'semantic-ui-react'
 
-function CreateTodoForm({ add, item, index }) {
+function CreateTodoForm({ add, item, index, color }) {
     const [value, setValue] = useState('')
 
     const handleOnChange = (e) => {
@@ -19,7 +19,7 @@ function CreateTodoForm({ add, item, index }) {
                     required
                 />
             </Form.Field>
-            <Button type='submit'>Ajoutez une {item}</Button>
+            <Button color={color} type='submit'>Ajoutez une {item}</Button>
         </Form>
     )
 }

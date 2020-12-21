@@ -1,3 +1,18 @@
+.container {
+    background-color: cadetblue;
+    height: 100vh;
+    overflow: auto;
+}
+
+.title {
+    position: absolute;
+    right: 10px;
+    bottom: 0;
+    color: cornsilk;
+    font-size: 10vw;
+
+}
 .cardGroup {
     padding: 10px;
+    flex-wrap: nowrap !important;
 }
