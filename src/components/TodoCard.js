@@ -6,6 +6,8 @@ import { Droppable, Draggable, DragDropContext } from 'react-beautiful-dnd'
 import { addTaskId, onDragEnd, deleteButton } from './store/action/todoList'
 import CreateTodoForm from './CreateTodoForm'
 
+import styles from "./css/todoCard.module.css"
+
 function TodoCard({ columns, tasks, addTaskId, onDragEnd, deleteButton}) {
 
     const renderCardItem = (taskId) => {
@@ -26,6 +28,7 @@ function TodoCard({ columns, tasks, addTaskId, onDragEnd, deleteButton}) {
                                         {...provided.draggableProps}
                                         {...provided.dragHandleProps}
                                         ref={provided.innerRef}
+                                        className={styles.cardItemRender}
                                     >
                                         <Card >
                                             <Card.Content>
@@ -61,6 +64,7 @@ function TodoCard({ columns, tasks, addTaskId, onDragEnd, deleteButton}) {
                         <div
                             {...provided.droppableProps}
                             ref={provided.innerRef}
+                            className={styles.cardRender}
                         >
                             <Card >
                                 <Card.Content>

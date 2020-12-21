@@ -6,6 +6,8 @@ import TodoCard from './components/TodoCard';
 import CreateTodoForm from './components/CreateTodoForm';
 import { ADD_COLUMN } from './components/store/action/actionTypes'
 
+import styles from "./components/css/app.module.css"
+
 
 
 function App({addColumn}) {
@@ -22,10 +24,10 @@ function App({addColumn}) {
 
   return (
     <Container fluid>
-      <Card.Group>
+      <Card.Group className={styles.cardGroup}>
         {renderCard()}
         <Card>
-          <Card.Content>
+          <Card.Content >
             <CreateTodoForm 
             add={addColumn} 
             item="liste" />
